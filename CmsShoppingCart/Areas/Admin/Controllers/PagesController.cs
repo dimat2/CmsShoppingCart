@@ -173,7 +173,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public void RecorderPages(int[] id)
+        public void ReorderPages(int[] id)
         {
             using (Db db = new Db())
             {

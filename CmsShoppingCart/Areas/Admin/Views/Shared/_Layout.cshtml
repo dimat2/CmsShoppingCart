@@ -15,13 +15,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a href="/admin/dashboard" class="navbar-brand">Dashboard</a>
+                </button>                
+                @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/admin/pages">Pages</a></li>
-                    <li><a href="/admin/pages/editsidebar">Sidebar</a></li>
+                    <li>@Html.ActionLink("Pages", "Index", "Pages")</li>
+                    <li>@Html.ActionLink("Sidebar", "EditSidebar", "Pages")</li>
+                    
+                    <li>@Html.ActionLink("Categories", "Categories", "Shop")</li>
+                    <li>@Html.ActionLink("Products", "Products", "Shop")</li>
                 </ul>
                 <ul class="navbar-right">
                     <li><a href="/" class="navbar-brand" target="_blank">CmsShoppingCart</a></li>

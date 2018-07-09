@@ -7,7 +7,7 @@
 <h2>Pages</h2>
 
 <p>
-    @Html.ActionLink("Add new page", "AddPage")
+    @Html.ActionLink("Add New Page", "AddPage")
 </p>
 
 @if (!Model.Any())
@@ -17,7 +17,7 @@
 else
 {
     <table class="table sorting" id="pages">
-        <tr class="home"> 
+        <tr class="home">
             <th>
                 Title
             </th>
@@ -30,56 +30,65 @@ else
             <th></th>
         </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr id="id_@item.Id" class="@item.Slug">
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slug)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasSidebar)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditPage", new { id = item.Id }) |
-                @Html.ActionLink("Details", "PageDetails", new { id = item.Id }) |
-                
-                @if (item.Slug != "home")
-                {
-                    @Html.ActionLink("Delete", "DeletePage", new { id = item.Id }, new { @class = "delete" })
-                }
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr id="id_@item.Id" class="@item.Slug">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasSidebar)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPage", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "PageDetails", new { id = item.Id }) |
+                    @if (item.Slug != "home")
+                    {
+                        @Html.ActionLink("Delete", "DeletePage", new { id = item.Id }, new { @class = "delete" })
+                    }
+                </td>
+            </tr>
+        }
 
     </table>
 }
 
-@section scripts {
-   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    
-     <script>
-        $(function () {
-            $("a.delete").click(function () {
-                if (!confirm("Biztos törlöd?"))
-                {
-                    return false;
-                }
-            });
+@section Scripts {
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script>
 
-            $("table#pages tbody").sortable({
-                items: "tr:not(.home)",
-                placeholder: "ui-state-highlight",
-                update: function () {
-                    var ids = $("table#pages tbody").sortable("serialize");
-                    var url = "Admin/Pages/RecorderPages";
+$(function () {
 
-                    $.post(url, ids, function (data) {
-                    });
-                }
+    /*
+    * Confirm page deletion
+    */
+
+    $("a.delete").click(function () {
+        if (!confirm("Biztos törlöd?")) return false;
+    });
+
+    //////////////////////////////////////////////////////////////
+
+    /*
+    * Reorder pages
+    */
+
+    $("table#pages tbody").sortable({
+        items: "tr:not(.home)",
+        placeholder: "ui-state-highlight",
+        update: function () {
+            var ids = $("table#pages tbody").sortable("serialize");
+            var url = "@Url.Action("ReorderPages", "Pages")";
+
+            $.post(url, ids, function (data) {
             });
-        });
+        }
+    });
+
+    //////////////////////////////////////////////////////////////
+});
     </script>
 }
