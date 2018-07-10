@@ -43,3 +43,7 @@ span.ajax-text {
 .ajaxdivtd {
     position: absolute;
 }
+
+.row {
+    position: relative;
+}
