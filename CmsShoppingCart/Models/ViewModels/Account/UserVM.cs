@@ -5,16 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CmsShoppingCart.Models.Account
+namespace CmsShoppingCart.Models.ViewModels.Account
 {
-    public class UserProfileVM
+    public class UserVM
     {
-        public UserProfileVM()
+        public UserVM()
         {
 
         }
 
-        public UserProfileVM(UserDTO row)
+        public UserVM(UserDTO row)
         {
             Id = row.Id;
             FirstName = row.FirstName;
@@ -36,5 +36,7 @@ namespace CmsShoppingCart.Models.Account
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string ConfirmPassword { get; set; }
     }
 }

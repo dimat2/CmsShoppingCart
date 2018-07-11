@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-topcancel">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,7 +29,7 @@
                     {
                         if (ViewBag.Title == "Login")
                         {
-                            <li class="active" href="~/Account/Login">Login</li>
+                            <li class="active"><a href="~/Account/Login">Login</a></li>
                         }
                         else
                         {
@@ -37,7 +37,7 @@
                         }
                     }
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (Request.IsAuthenticated && User.IsInRole("User"))
                     {
                         if (ViewBag.Title == "User Profile" || ViewBag.Title == "Orders")
                         {
@@ -45,7 +45,7 @@
                         }
                         else
                         {
-                            @Html.Action("UserNavPartial", "Account", new { area = "" })
+                            <li>@Html.Action("UserNavPartial", "Account", new { area = "" })</li>
                         }
                     }
                 </ul>
@@ -61,7 +61,7 @@
                     if (ViewBag.Title != "Cart Details")
                     {
                         <ul class="navbar-collapse collapse navbar-right">
-                            @Html.Action("CartPartial", "Cart")
+                            @*@Html.Action("CartPartial", "Cart")*@
                         </ul>
                     }
                 }
