@@ -65,3 +65,10 @@ CREATE TABLE [dbo].[tblUserRoles] (
     PRIMARY KEY CLUSTERED ([RoleId] ASC, [UserId] ASC)
 );
 INSERT INTO tblUserRoles(UserId, RoleId) VALUES (1, 1)
+
+CREATE TABLE [dbo].[tblOrders] (
+    [OrderId]   INT           IDENTITY (1, 1) NOT NULL,
+    [UserId]    INT           NULL,
+    [CreatedAt] DATETIME2 (7) NULL,
+    PRIMARY KEY CLUSTERED ([OrderId] ASC)
+);
