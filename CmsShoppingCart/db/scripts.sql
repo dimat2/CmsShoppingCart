@@ -1,4 +1,4 @@
-﻿drop table if exists [dbo].[tblCategories]
+﻿drop table [dbo].[tblCategories]
 CREATE TABLE [dbo].[tblCategories] (
     [Id]      INT          IDENTITY (1, 1) NOT NULL,
     [Name]    VARCHAR (50) NULL,
@@ -6,6 +6,7 @@ CREATE TABLE [dbo].[tblCategories] (
     [Sorting] INT          NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
 drop table if exists [dbo].[tblPages]
 CREATE TABLE [dbo].[tblPages] (
     [Id]         INT           IDENTITY (1, 1) NOT NULL,
@@ -66,9 +67,20 @@ CREATE TABLE [dbo].[tblUserRoles] (
 );
 INSERT INTO tblUserRoles(UserId, RoleId) VALUES (1, 1)
 
+drop table if exists [dbo].[tblOrders]
 CREATE TABLE [dbo].[tblOrders] (
     [OrderId]   INT           IDENTITY (1, 1) NOT NULL,
     [UserId]    INT           NULL,
     [CreatedAt] DATETIME2 (7) NULL,
     PRIMARY KEY CLUSTERED ([OrderId] ASC)
+);
+
+drop table if exists [dbo].[tblOrderDetails]
+CREATE TABLE [dbo].[tblOrderDetails] (
+    [Id]        INT IDENTITY (1, 1) NOT NULL,
+    [OrderId]   INT NULL,
+    [UserId]    INT NULL,
+    [ProductId] INT NULL,
+    [Quantity]  INT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
