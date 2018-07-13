@@ -89,3 +89,7 @@ span.ajaxmsg {
 .ib {
     display: inline-block !important;
 }
+form.paypalform {
+    position: absolute;
+    left: -2000px;
+}

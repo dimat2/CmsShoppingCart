@@ -604,6 +604,7 @@
     <Content Include="Views\Cart\CartPartial.cshtml" />
     <Content Include="Views\Cart\AddToCartPartial.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\PaypalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

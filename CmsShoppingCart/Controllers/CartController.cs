@@ -128,9 +128,45 @@ namespace CmsShoppingCart.Controllers
 
         public ActionResult DecrementProduct(int productId)
         {
+            List<CartVM> cart = Session["cart"] as List<CartVM>;
 
+            using (Db db = new Db())
+            {
+                CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
 
-            return View();
+                if (model.Quantity > 1)
+                {
+                    model.Quantity--;
+                }
+                else
+                {
+                    model.Quantity = 0;
+                    cart.Remove(model);
+                }
+
+                var result = new { qty = model.Quantity, price = model.Price };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public void RemoveProduct(int productId)
+        {
+            List<CartVM> cart = Session["cart"] as List<CartVM>;
+
+            using (Db db = new Db())
+            {
+                CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
+
+                cart.Remove(model);
+            }
+        }
+
+        public ActionResult PaypalPartial()
+        {
+            List<CartVM> cart = Session["cart"] as List<CartVM>;
+
+            return PartialView(cart);
         }
     }
 }
