@@ -1,4 +1,4 @@
-﻿drop table [dbo].[tblCategories]
+﻿drop table if exists [dbo].[tblCategories]
 CREATE TABLE [dbo].[tblCategories] (
     [Id]      INT          IDENTITY (1, 1) NOT NULL,
     [Name]    VARCHAR (50) NULL,
